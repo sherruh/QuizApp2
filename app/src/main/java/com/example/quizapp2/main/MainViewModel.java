@@ -1,4 +1,4 @@
-package com.example.quizapp2;
+package com.example.quizapp2.main;
 
 import androidx.lifecycle.ViewModel;
 
