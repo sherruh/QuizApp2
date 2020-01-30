@@ -12,11 +12,13 @@ import android.os.Bundle;
 
 import com.example.quizapp2.R;
 import com.example.quizapp2.settings.SettingsFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.main_view_pager);
         pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+        bottomNavigationView = findViewById(R.id.bottom_nav_main);
+        bottomNavigationView.setItemIconTintList(null);
     }
 
     public class PagerAdapter extends FragmentPagerAdapter{
