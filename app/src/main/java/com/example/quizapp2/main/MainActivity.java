@@ -7,11 +7,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.quizapp2.R;
+import com.example.quizapp2.history.HistoryFragment;
 import com.example.quizapp2.settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private MainFragment mainFragment;
     private SettingsFragment settingsFragment;
+    private HistoryFragment historyFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +37,17 @@ public class MainActivity extends AppCompatActivity {
 
         mainFragment = MainFragment.newInstance();
         settingsFragment = SettingsFragment.newInstance();
+        historyFragment = HistoryFragment.newInstance();
 
         viewPager = findViewById(R.id.main_view_pager);
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),mainFragment,settingsFragment);
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),mainFragment,settingsFragment,historyFragment);
         viewPager.setAdapter(pagerAdapter);
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+            @Override
+            public void onPageSelected(int position) {
+                bottomNavigationView.setSelectedItemId(bottomNavigationView.getMenu().getItem(position).getItemId());
+            }
+        });
         bottomNavigationView = findViewById(R.id.bottom_nav_main);
         bottomNavigationView.setItemIconTintList(null);
         setBottomNavListener();
@@ -55,15 +63,19 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.item_main:
                         item.setIcon(R.drawable.ic_main);
+                        pagerAdapter.getItem(0);
+                        viewPager.setCurrentItem(0);
                         break;
                     case R.id.item_history:
                         item.setIcon(R.drawable.ic_history);
+                        pagerAdapter.getItem(1);
+                        viewPager.setCurrentItem(1);
                         break;
                     default:
                         item.setIcon(R.drawable.ic_settings);
-
+                        viewPager.setCurrentItem(2);
                 }
-                return false;
+                return true;
             }
         });
     }
@@ -72,14 +84,17 @@ public class MainActivity extends AppCompatActivity {
 
         private MainFragment mainFragment;
         private SettingsFragment settingsFragment;
+        private HistoryFragment historyFragment;
 
         public PagerAdapter(@NonNull FragmentManager fm
                 ,MainFragment mainFragment
-                ,SettingsFragment settingsFragment) {
+                ,SettingsFragment settingsFragment
+                ,HistoryFragment historyFragment) {
             super(fm);
 
             this.mainFragment = mainFragment;
             this.settingsFragment = settingsFragment;
+            this.historyFragment = historyFragment;
         }
 
         @NonNull
@@ -91,8 +106,11 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     fragment = this.mainFragment;
                     break;
-                default:
+                case 1:
                     fragment = this.settingsFragment;
+                    break;
+                default:
+                    fragment = this.historyFragment;
             }
 
             return fragment;
@@ -100,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
     }
 }
