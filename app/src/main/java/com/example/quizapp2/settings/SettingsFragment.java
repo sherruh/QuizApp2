@@ -19,8 +19,8 @@ public class SettingsFragment extends Fragment {
 
     private MainViewModel mViewModel;
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static SettingsFragment newInstance() {
+        return new SettingsFragment();
     }
 
     @Override

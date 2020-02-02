@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.quizapp2.R;
 import com.example.quizapp2.settings.SettingsFragment;
@@ -20,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private PagerAdapter pagerAdapter;
     private BottomNavigationView bottomNavigationView;
 
+    private MainFragment mainFragment;
+    private SettingsFragment settingsFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,17 +33,53 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
+        mainFragment = MainFragment.newInstance();
+        settingsFragment = SettingsFragment.newInstance();
+
         viewPager = findViewById(R.id.main_view_pager);
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager());
+        pagerAdapter = new PagerAdapter(getSupportFragmentManager(),mainFragment,settingsFragment);
         viewPager.setAdapter(pagerAdapter);
         bottomNavigationView = findViewById(R.id.bottom_nav_main);
         bottomNavigationView.setItemIconTintList(null);
+        setBottomNavListener();
     }
 
-    public class PagerAdapter extends FragmentPagerAdapter{
+    private void setBottomNavListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                bottomNavigationView.getMenu().getItem(0).setIcon(R.drawable.ic_main_idle);
+                bottomNavigationView.getMenu().getItem(1).setIcon(R.drawable.ic_history_idle);
+                bottomNavigationView.getMenu().getItem(2).setIcon(R.drawable.ic_settings_idle);
+                switch (item.getItemId()){
+                    case R.id.item_main:
+                        item.setIcon(R.drawable.ic_main);
+                        break;
+                    case R.id.item_history:
+                        item.setIcon(R.drawable.ic_history);
+                        break;
+                    default:
+                        item.setIcon(R.drawable.ic_settings);
 
-        public PagerAdapter(@NonNull FragmentManager fm) {
+                }
+                return false;
+            }
+        });
+    }
+
+    private class PagerAdapter extends FragmentPagerAdapter {
+
+        private MainFragment mainFragment;
+        private SettingsFragment settingsFragment;
+
+        public PagerAdapter(@NonNull FragmentManager fm
+                ,MainFragment mainFragment
+                ,SettingsFragment settingsFragment) {
             super(fm);
+
+            this.mainFragment = mainFragment;
+            this.settingsFragment = settingsFragment;
         }
 
         @NonNull
@@ -48,11 +88,11 @@ public class MainActivity extends AppCompatActivity {
 
             Fragment fragment;
             switch (position){
-                case 1:
-                    fragment = MainFragment.newInstance();
+                case 0:
+                    fragment = this.mainFragment;
                     break;
                 default:
-                    fragment = SettingsFragment.newInstance();
+                    fragment = this.settingsFragment;
             }
 
             return fragment;
