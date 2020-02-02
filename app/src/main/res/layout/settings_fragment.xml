@@ -14,7 +14,7 @@
         >
         <TextView
             style="@style/TextTitle"
-            android:text="Settings"
+            android:text="@string/settings"
             />
     </androidx.appcompat.widget.Toolbar>
 

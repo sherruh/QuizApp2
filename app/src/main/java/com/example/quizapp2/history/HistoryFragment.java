@@ -13,8 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.quizapp2.R;
+import com.example.quizapp2.core.CoreFragment;
 
-public class HistoryFragment extends Fragment {
+public class HistoryFragment extends CoreFragment {
 
     private HistoryFragmentViewModel mViewModel;
 
@@ -22,11 +23,6 @@ public class HistoryFragment extends Fragment {
         return new HistoryFragment();
     }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.history_fragment, container, false);
-    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -35,4 +31,8 @@ public class HistoryFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.history_fragment;
+    }
 }

@@ -13,7 +13,7 @@
         >
         <TextView
             style="@style/TextTitle"
-            android:text="History"
+            android:text="@string/history"
             />
     </androidx.appcompat.widget.Toolbar>
 

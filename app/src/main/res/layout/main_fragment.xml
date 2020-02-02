@@ -13,9 +13,51 @@
         >
         <TextView
             style="@style/TextTitle"
-            android:text="Quiz"
+            android:text="@string/quiz"
             />
         </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_main_pic"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="89dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    <TextView
+        android:id="@+id/main_text_questions_amount"
+        style="@style/TextHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="203dp"
+        android:text="@string/questions_amount"/>
+    <TextView
+        android:id="@+id/main_text_amount"
+        style="@style/TextMainComponents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10"
+        app:layout_constraintStart_toEndOf="@id/main_text_questions_amount"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="202dp"
+        android:layout_marginStart="30dp"/>
+
+    <SeekBar
+        android:id="@+id/main_seek_bar"
+        android:layout_width="307dp"
+        android:layout_height="50dp"
+        android:progressDrawable="@drawable/seek_bar"
+        android:thumb="@drawable/seek_thumb"
+        android:max="20"
+        android:progress="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_text_questions_amount" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

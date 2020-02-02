@@ -6,31 +6,35 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.example.quizapp2.R;
+import com.example.quizapp2.core.CoreFragment;
+import com.example.quizapp2.utils.Logger;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends CoreFragment implements SeekBar.OnSeekBarChangeListener {
 
     private MainViewModel mViewModel;
+    private TextView tvAmount;
+    private SeekBar seekBar;
 
     public static MainFragment newInstance() {
         return new MainFragment();
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_fragment, container, false);
-    }
-
-    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initView();
+    }
+
+    private void initView() {
+        tvAmount = getActivity().findViewById(R.id.main_text_amount);
+        seekBar = getActivity().findViewById(R.id.main_seek_bar);
+        seekBar.setOnSeekBarChangeListener(this);
     }
 
     @Override
@@ -40,4 +44,24 @@ public class MainFragment extends Fragment {
 
     }
 
+    @Override
+    protected int getLayoutId() {
+        return R.layout.main_fragment;
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        tvAmount.setText(String.valueOf(seekBar.getProgress()));
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+        /*Logger.d(String.valueOf(seekBar.getProgress()));
+        tvAmount.setText(String.valueOf(seekBar.getProgress()));*/
+    }
 }
