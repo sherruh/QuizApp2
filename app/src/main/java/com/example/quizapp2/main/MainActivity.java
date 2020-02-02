@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
         mainFragment = MainFragment.newInstance();
         settingsFragment = SettingsFragment.newInstance();
         historyFragment = HistoryFragment.newInstance();
