@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".history.HistoryFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <TextView
+            style="@style/TextTitle"
+            android:text="History"
+            />
+    </androidx.appcompat.widget.Toolbar>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
