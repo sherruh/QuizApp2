@@ -21,14 +21,29 @@
     <style name="TextHint">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/colorTextHint</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
     </style>
     
     <style name="TextMainComponents" parent="TextCommon">
         <item name="android:textColor">@color/coloDarkGrey</item>
         <item name="android:textSize">15sp</item>
+
     </style>
 
     <style name="TextCommon">
         <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="Spinner">
+        <item name="android:layout_width">274dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:padding">5dp</item>
+    </style>
+    
+    <style name="MainCardView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
     </style>
 </resources>

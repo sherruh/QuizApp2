@@ -1,5 +1,6 @@
 package com.example.quizapp2.main;
 
+import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -20,6 +21,8 @@ public class MainFragment extends CoreFragment implements SeekBar.OnSeekBarChang
     private MainViewModel mViewModel;
     private TextView tvAmount;
     private SeekBar seekBar;
+    private AppCompatSpinner spinnerCategory;
+    private AppCompatSpinner spinnerDifficulty;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -35,6 +38,9 @@ public class MainFragment extends CoreFragment implements SeekBar.OnSeekBarChang
         tvAmount = getActivity().findViewById(R.id.main_text_amount);
         seekBar = getActivity().findViewById(R.id.main_seek_bar);
         seekBar.setOnSeekBarChangeListener(this);
+        spinnerCategory = getActivity().findViewById(R.id.main_category_spinner);
+        spinnerDifficulty = getActivity().findViewById(R.id.main_difficulty_spinner);
+
     }
 
     @Override
@@ -61,7 +67,6 @@ public class MainFragment extends CoreFragment implements SeekBar.OnSeekBarChang
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        /*Logger.d(String.valueOf(seekBar.getProgress()));
-        tvAmount.setText(String.valueOf(seekBar.getProgress()));*/
+
     }
 }
