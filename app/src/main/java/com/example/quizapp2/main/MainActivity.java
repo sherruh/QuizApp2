@@ -106,10 +106,10 @@ public class MainActivity extends AppCompatActivity {
                     fragment = this.mainFragment;
                     break;
                 case 1:
-                    fragment = this.settingsFragment;
+                    fragment = this.historyFragment;
                     break;
                 default:
-                    fragment = this.historyFragment;
+                    fragment = this.settingsFragment;
             }
 
             return fragment;
