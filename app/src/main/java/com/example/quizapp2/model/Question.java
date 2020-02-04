@@ -8,7 +8,7 @@ public class Question {
 
     private String category;
 
-    private String difficulty;
+    private EDifficulty difficulty;
 
     private String type;
 
@@ -26,11 +26,11 @@ public class Question {
         this.category = category;
     }
 
-    public String getDifficulty() {
+    public EDifficulty getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(String difficulty) {
+    public void setDifficulty(EDifficulty difficulty) {
         this.difficulty = difficulty;
     }
 
@@ -66,7 +66,7 @@ public class Question {
         this.incorrectAnswers = incorrectAnswers;
     }
 
-    public Question(String category, String difficulty, String type, String question,
+    public Question(String category, EDifficulty difficulty, String type, String question,
                     String correctAnswer, List<String> incorrectAnswers) {
         this.category = category;
         this.difficulty = difficulty;

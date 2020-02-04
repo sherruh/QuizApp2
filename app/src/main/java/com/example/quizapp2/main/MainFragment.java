@@ -12,9 +12,14 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.example.quizapp2.App;
 import com.example.quizapp2.R;
 import com.example.quizapp2.core.CoreFragment;
+import com.example.quizapp2.data.remote.IQuizApiClient;
+import com.example.quizapp2.model.Question;
 import com.example.quizapp2.utils.Logger;
+
+import java.util.List;
 
 public class MainFragment extends CoreFragment implements SeekBar.OnSeekBarChangeListener {
 
@@ -40,6 +45,17 @@ public class MainFragment extends CoreFragment implements SeekBar.OnSeekBarChang
         seekBar.setOnSeekBarChangeListener(this);
         spinnerCategory = getActivity().findViewById(R.id.main_category_spinner);
         spinnerDifficulty = getActivity().findViewById(R.id.main_difficulty_spinner);
+        App.quizApiClient.qetQuestions(new IQuizApiClient.QuestionsCallback() {
+            @Override
+            public void onSuccess(List<Question> questions) {
+                Logger.d(String.valueOf(questions.size()));
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Logger.d(e.getMessage());
+            }
+        });
 
     }
 

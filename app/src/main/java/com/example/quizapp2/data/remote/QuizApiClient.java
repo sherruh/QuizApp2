@@ -1,5 +1,7 @@
 package com.example.quizapp2.data.remote;
 
+import com.example.quizapp2.core.CoreCallback;
+import com.example.quizapp2.model.EDifficulty;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -21,20 +23,20 @@ public class QuizApiClient implements IQuizApiClient {
     @Override
     public void qetQuestions(final QuestionsCallback callback) {
         Call<QuestionsResponse> call = client.getQuestions(
-                10,
+                15,
                 null,
-                null
+                "easy"
         );
 
-        call.enqueue(new Callback<QuestionsResponse>() {
+        call.enqueue(new CoreCallback<QuestionsResponse>() {
             @Override
-            public void onResponse(Call<QuestionsResponse> call, Response<QuestionsResponse> response) {
-
+            public void onSuccess(QuestionsResponse result) {
+                callback.onSuccess(result.getResults());
             }
 
             @Override
-            public void onFailure(Call<QuestionsResponse> call, Throwable t) {
-                callback.onFailure(new Exception(t));
+            public void onFailure(Exception e) {
+                callback.onFailure(e);
             }
         });
     }
