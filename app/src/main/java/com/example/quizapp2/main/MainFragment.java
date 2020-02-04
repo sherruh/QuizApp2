@@ -16,6 +16,7 @@ import com.example.quizapp2.App;
 import com.example.quizapp2.R;
 import com.example.quizapp2.core.CoreFragment;
 import com.example.quizapp2.data.remote.IQuizApiClient;
+import com.example.quizapp2.model.Category;
 import com.example.quizapp2.model.Question;
 import com.example.quizapp2.utils.Logger;
 
@@ -57,6 +58,17 @@ public class MainFragment extends CoreFragment implements SeekBar.OnSeekBarChang
             }
         });
 
+        App.quizApiClient.getCategories(new IQuizApiClient.CategoriesCallback() {
+            @Override
+            public void onSuccess(List<Category> categories) {
+                Logger.d(categories.get(0).getName());
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+        });
     }
 
     @Override

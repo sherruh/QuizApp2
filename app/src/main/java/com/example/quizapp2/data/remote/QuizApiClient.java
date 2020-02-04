@@ -2,6 +2,7 @@ package com.example.quizapp2.data.remote;
 
 import com.example.quizapp2.core.CoreCallback;
 import com.example.quizapp2.model.EDifficulty;
+import com.example.quizapp2.utils.Logger;
 import com.google.gson.Gson;
 
 import retrofit2.Call;
@@ -39,6 +40,22 @@ public class QuizApiClient implements IQuizApiClient {
                 callback.onFailure(e);
             }
         });
+
+    }
+
+    @Override
+    public void getCategories(final CategoriesCallback callback) {
+        client.getCategories().enqueue(new CoreCallback<CategoryResponse>() {
+            @Override
+            public void onSuccess(CategoryResponse result) {
+                callback.onSuccess(result.getCategories());
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+        });
     }
 
     private interface QuizApi{
@@ -48,5 +65,8 @@ public class QuizApiClient implements IQuizApiClient {
                 @Query("category") String category,
                 @Query("difficulty") String difficulty
         );
+
+        @GET("api_category.php")
+        Call<CategoryResponse> getCategories();
     }
 }
